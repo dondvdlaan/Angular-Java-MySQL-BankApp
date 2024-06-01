@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  title: test customer API
+  description: test to implement openApi with dto's
+  version: 0.0.1
+
+servers:
+  - url: http://localhost:8080/
+    description: test server
+
+paths:
+  /dto/deposit/{accountId}:
+    put:
+      summary: Deposit account by id
+
+      parameters:
+        - in: path
+          name: accountId
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to get
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dto'
+
+      operationId: depositById
+
+      responses:
+        '200': # status code
+          description: JSON object balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dto'
+
+                #items:
+                #  $ref: '#/components/schemas/Dto'
+        '400': # error code
+          description: Invalid request
+
+  /dto/withdrawal/{accountId}:
+    put:
+      summary: Withdrawal from account by id
+
+      parameters:
+        - in: path
+          name: accountId
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to get
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dto'
+
+      operationId: withdrawalById
+
+      responses:
+        '200': # status code
+          description: JSON object balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dto'
+
+                #items:
+                #  $ref: '#/components/schemas/Dto'
+        '400': # error code
+          description: Invalid request
+
+  /dto/customer/{custId}:
+    get:
+      summary: Retrieve customer by customer id
+
+      parameters:
+        - in: path
+          name: custId
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the customer to get
+
+      operationId: customerById
+
+      responses:
+        '200': # status code
+          description: JSON object customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDto'
+        '400': # error code
+          description: Invalid request
+
+components:
+  schemas:
+    Dto:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: amount to be transferred to and fro between fe and be
+          example: 1234
+        messageToUser:
+          type: string
+          description: message for user from be to fe
+          example: You have
+    AccountDto:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: id of account
+          example: 1
+        title:
+          type: string
+          description: Type of account
+          example: "checker account"
+        balance:
+          type: number
+          description: Account balance
+          example: 1234
+        currency:
+          type: string
+          description: Currency used for account
+          example: EUR
+        createdAt:
+          type: string
+          format: date-time
+          description: Zoned Date/time account created first time
+          example: 2016-03-23T18:21+01:00[CET]
+    CustomerDto:
+      type: object
+      properties:
+        custId:
+          type: integer
+          description: id of customer
+          example: 1
+        firstName:
+          type: string
+          description: Firstname
+          example: Joe
+        lastName:
+          type: string
+          description: Firstname
+          example: Joe
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountDto'

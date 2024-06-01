@@ -1,0 +1,63 @@
+
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #acefe9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+  background-color: #acefe9;
+  font-size: xx-large;
+}
+
+.mat-cell {
+  color: blue;
+}
+
+.mat-column-accountId {
+  width: auto;
+  border-right: 1px solid currentColor;
+  padding-right: 5px;
+  text-align: left;
+}
+
+.mat-column-title {
+  width: auto;
+  /*padding-right: 5px;*/
+  text-align: left;
+  /*background-color: aqua;*/
+}
+
+.mat-column-balance {
+  width: auto;
+  text-align: left;
+  /*font-weight: bold;*/
+}
+
+.mat-column-createdAt {
+  width: auto;
+  text-align: left;
+  /*font-weight: bold;*/
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.row-clicked {
+  /*font-weight: bold;*/
+  background-color: lightcoral;
+}

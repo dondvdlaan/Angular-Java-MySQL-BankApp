@@ -1,0 +1,62 @@
+/*::ng-deep .mat-form-field {
+  .mat-input-element {
+    text-align: center;
+      color: rgb(181, 76, 58);
+  }
+  .mat-form-field-label {
+      color: rgb(181, 76, 58);
+  }
+  .mat-form-field-underline {
+      background-color: rgb(181, 76, 58);
+  }
+  .mat-form-field-ripple {
+      background-color: rgb(181, 76, 58);
+  }
+  .mat-form-field-required-marker {
+      color:  rgb(181, 76, 58);
+  }
+}*/
+::ng-deep .mat-form-field .mat-form-field-flex{
+      background-color: rgb(255, 0, 0); 
+   }
+.Component-header {
+  background-color: #acefe9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftVerticalAlign {
+  left: 5em;
+  position: absolute;
+  top: 50%;
+  transform: translate(0px, -50%);
+  margin: 0;
+}
+
+input {
+  /*
+  margin: 0;
+  border: khaki;
+  background: none;
+  padding: 0%;
+  outline: lawngreen;
+  font: inherit;
+  text-align: right;
+  background-color: green !important;
+  color: green !important;*/
+}
+
+.deposit-grid {
+  margin-top: 10px;
+}
+
+.deposit-form {
+  min-width: 50px;
+  max-width: 75px;
+  width: 50%;
+}
+
+.deposit-full-width {
+  width: 100%;
+}

@@ -1,0 +1,121 @@
+<div class="Component-header">
+
+  <!-- Wait till account array arrives-->
+  @if (account$ | async; as account){
+  <mat-grid-list cols="4" rowHeight="5:2" class="deposit-grid">
+    <!-- Deposit Template form -->
+    <mat-grid-tile>
+      <div class="leftVerticalAlign">
+        Deposit
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>{{account.currency}} </mat-grid-tile>
+    <form #depositForm="ngForm" class="deposit-form" (ngSubmit)="onDeposit(depositForm)">
+      <input type="hidden" name="accountId" [ngModel]="account.accountId">
+      <mat-grid-tile>
+        <mat-form-field class="deposit-full-width">
+          <input 
+          matInput 
+          #depositRef="ngModel" 
+          name="deposit" 
+          type="number" 
+          min=0 
+          ngModel
+          class="mat-input-element"
+          />
+        </mat-form-field>
+        <div *ngIf="depositRef.errors?.['min']">Only positive amounts</div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button color="primary" type="submit" [disabled]="depositRef.invalid">
+          Submit
+        </button>
+      </mat-grid-tile>
+    </form>
+    <!-- Withdrawal ReactiveForm -->
+    <mat-grid-tile>
+      <div class="leftVerticalAlign">
+        Withdrawal
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>{{account.currency}} </mat-grid-tile>
+    <form [formGroup]="withdrawalForm" (ngSubmit)="onWithdrawal()">
+      <mat-grid-tile>
+        <mat-form-field class="deposit-full-width">
+          <input 
+          matInput 
+          type="number" 
+          formControlName="withdrawal"
+          min=0  
+          required />
+        </mat-form-field>
+        <!-- https://stackoverflow.com/questions/60000152/how-to-set-a-custom-error-message-to-a-form-in-angular-->
+        <div *ngIf="withdrawalForm.controls.withdrawal.errors?.['min']">Only positive amounts</div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button color="primary" type="submit" [disabled]="withdrawalForm.invalid">
+          Submit
+        </button>
+      </mat-grid-tile>
+    </form>
+    <!-- Balance-->
+    <mat-grid-tile>
+      <div class="leftVerticalAlign">
+        Balance
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>{{account.currency}} </mat-grid-tile>
+    <mat-grid-tile>{{balance}} </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+
+    <!-- Error message -->
+    <mat-grid-tile>
+      <div class="leftVerticalAlign">
+        Error message
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>{{messageToUser}} </mat-grid-tile>
+  </mat-grid-list>
+  } @else {
+  Account not Found
+  }
+
+  <!-- 
+    <div *ngIf="withdrawalForm.errors?.['min']">Only positive amounts</div>
+    [disabled]="depositRef.invalid"
+<h2>Deposite Form</h2>
+<p>Deposit: {{ depositForm.value.deposit }}</p>
+ #input
+          (ngModelChange)="handleOnChange('deposit', $event, input)"
+        [(ngModel)]="deposit"
+
+             <div *ngIf="depositRef.hasError('min')">
+            Only positive amounts
+          </div>
+        [ngModelOptions]="{standalone: true}"
+
+        -->
+
+  @if (account$ | async; as account){
+  <mat-card>
+    <mat-card-header>
+      <h2> {{account.accountId}} </h2>
+    </mat-card-header>
+    <mat-card-content>
+      {{account.balance}}
+    </mat-card-content>
+  </mat-card>
+  } @else {
+  Account not Found
+  }
+  @if (accountDTO$ | async; as accountDTO){
+  <mat-card>
+    <mat-card-header>
+      <h2>AMOUNT {{accountDTO.amount}} </h2>
+    </mat-card-header>
+  </mat-card>
+  } @else {
+  AccountDTO not Found
+  }
+
+</div>

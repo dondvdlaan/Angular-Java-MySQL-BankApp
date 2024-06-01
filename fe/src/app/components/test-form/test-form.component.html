@@ -1,0 +1,16 @@
+<br />
+<form #singUpForm="ngForm" (ngSubmit)="onSubmit(singUpForm)">
+
+        <label for="deposit">Deposit</label>
+        <input 
+        #depositRef="ngModel"
+        type="number" 
+        name="deposit" 
+        min=0
+        pattern="^[0-9]*$"
+        ngModel>
+        <div *ngIf="depositRef.errors?.['min']">Only positive amounts</div>
+    <p>
+        <button type="submit" [disabled]="depositRef.invalid">Submit</button>
+      </p>
+</form>

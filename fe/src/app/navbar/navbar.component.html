@@ -1,0 +1,16 @@
+  <mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a routerLink="/" mat-menu-item>Home</a>
+      <a routerLink="/user" mat-menu-item>User</a>
+      <a routerLink="/test-form" mat-menu-item>Test Form</a>
+      <a routerLink="/contact" mat-menu-item>Contact</a>
+    </mat-menu>
+    <ng-container *ngIf="customerName | async as cust ">
+      <span>Bank account for: {{ cust.firstName }} {{ cust.lastName }}</span>
+    </ng-container>
+    <!--<span class="example-spacer"></span>-->
+   
+  </mat-toolbar>

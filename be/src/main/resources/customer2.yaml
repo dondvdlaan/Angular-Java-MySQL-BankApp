@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: test customer API
+  description: test to implement openApi with dto
+  version: 0.0.1
+
+servers:
+  - url: http://localhost:8080/v1
+    description: test server
+
+paths:
+  /customer2:
+    get:
+      summary: Returns a list of customers
+      description: <p> List of customers</p>
+      operationId: getAllCustomers
+      responses:
+        '200':  # status code
+          description: JSON array of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer2'
+components:
+  schemas:
+    Customer2:
+      type: object
+      properties:
+        custId:
+          type: integer
+          format: int64
+          example: 10
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe

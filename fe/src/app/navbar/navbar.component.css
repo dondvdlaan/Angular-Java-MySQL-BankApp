@@ -1,0 +1,10 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+/* Config for toolbar*/
+.mat-toolbar {
+  background: #cfe8fc;
+  color: "#0000FF";
+  
+}
